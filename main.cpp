@@ -83,6 +83,7 @@ int main(int argc, char *argv[]) {
     const auto build_version_release = config.find("BUILD_VERSION_RELEASE");
     const auto debuggable = config.find("DEBUGGABLE");
     const auto manufacturer_name = config.find("MANUFACTURER_NAME");
+    const auto brand_name = config.find("BRAND_NAME");
     const auto product_name = config.find("PRODUCT_NAME");
 
     if (is_init_stage && build_fingerprint != config.end()) {
@@ -123,8 +124,12 @@ int main(int argc, char *argv[]) {
                 manufacturer_name->second.c_str());
     }
 
+    if (is_init_stage && manufacturer_name != config.end()) {
+        property_override(property_list("ro.product.", "manufacturer"),
+                manufacturer_name->second.c_str());
+    }
     if (is_init_stage && product_name != config.end()) {
-        property_override(property_list("ro.product.", "name"), product_name->second.c_str());
+        property_override(property_list("ro.product.", "brand"), brand->second.c_str());
     }
 
     property_override("ro.boot.flash.locked", "1");
