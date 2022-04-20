@@ -129,7 +129,7 @@ int main(int argc, char *argv[]) {
                 manufacturer_name->second.c_str());
     }
     if (is_init_stage && product_name != config.end()) {
-        property_override(property_list("ro.product.", "brand"), brand->second.c_str());
+        property_override(property_list("ro.product.", "brand"), brand_name->second.c_str());
     }
 
     property_override("ro.boot.flash.locked", "1");
