@@ -113,6 +113,8 @@ int main(int argc, char *argv[]) {
     if (is_boot_completed_stage && build_security_patch_date != config.end()) {
         property_override("ro.build.version.security_patch",
                 build_security_patch_date->second.c_str());
+        property_override("ro.vendor.build.security_patch",
+                build_security_patch_date->second.c_str());
     }
 
     if (is_init_stage && debuggable != config.end()) {
